@@ -1,9 +1,9 @@
 export const de = {
     site: {
         title: 'Mit Wikipedia Lernen',
-        tried_words: 'Vermutungen',
+        tried_words: 'Erraten',
         input: {
-            guess: 'Vermutungen'
+            guess: 'deine Vermutung'
         },
     },
     toolbar: {
