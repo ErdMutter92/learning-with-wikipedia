@@ -1,0 +1,109 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  mat-toolbar {
+    height: 64px;
+    display: flex;
+    gap: 10px;
+    border-bottom: 1px solid lightgray;
+  }
+
+  .main-container {
+    flex: 1 auto;
+
+    .content-container {
+      padding: 20px;
+
+      .input-container {
+        max-width: 800px;
+        margin: auto;
+        display: flex;
+        margin-top: 20px;
+
+        mat-form-field {
+          flex: 1 auto;
+        }
+      }
+    }
+
+    mat-card {
+      display: block;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .left-sidenav {
+      min-width: 260px;
+    }
+
+    .right-sidenav {
+      width: 260px;
+      padding: 10px;
+
+      .title {
+        font-weight: bold;
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  .spacer {
+    margin-left: auto;
+  }
+
+  .contents {
+    max-width: 800%;
+    word-wrap: normal;
+    margin: 20px 0px;
+
+    span {
+      display: inline-block;
+      padding: 2px;
+      margin: 2px;
+
+      &.specal {
+        margin: 2px 0px;
+        padding: 0px;
+        color: unset;
+        background-color: unset;
+        border-radius: 0px;
+      }
+    }
+  }
+}
+
+.masked {
+  background-color: black;
+  color: black;
+
+  border-radius: 5px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  &--cold {
+    background-color: lightblue;
+    color: lightblue;
+  }
+
+  &--warm {
+    background-color: orange;
+    color: orange;
+  }
+
+  &--warmer {
+    background-color: darkorange;
+    color: darkorange;
+  }
+
+  &--hot {
+    background-color: red;
+    color: red;
+  }
+}
