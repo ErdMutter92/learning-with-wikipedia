@@ -19,6 +19,6 @@ export class WikipediaAPIService {
         // headers.set('Authorization', 'Bearer YOUR_ACCESS_TOKEN');
         headers.set('Api-User-Agent', 'Deutsch Vocab Lehnen (bmbleau@gmail.com)');
 
-        return this.httpClient.get(`https://api.wikimedia.org/feed/v1/wikipedia/${language}/featured/${year}/${month}/${day}`, { headers });
+        return this.httpClient.get(`https://api.wikimedia.org/feed/v1/wikipedia/${language}/featured/${year}/${month}/${day}?origin=*`, { headers });
     }
 }
