@@ -9,13 +9,14 @@ import { provideEffects } from '@ngrx/effects';
 import { articleReducer } from './article/article.reducer';
 import { ArticleEffects } from './article/article.effects';
 import { WikipediaAPIService } from './wikipedia.service';
+import { languageReducer } from './language/language.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     WikipediaAPIService,
     provideRouter(routes),
     importProvidersFrom(HttpClientModule), provideAnimationsAsync(),
-    provideStore({ article: articleReducer }),
+    provideStore({ article: articleReducer, language: languageReducer }),
     provideEffects(ArticleEffects)
   ]
 };

@@ -1,4 +1,4 @@
 export enum Language {
-    english = 'english',
-    deutsch = 'deutsch',
+    english = 'en',
+    deutsch = 'de',
 };
