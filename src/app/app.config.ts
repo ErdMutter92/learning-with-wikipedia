@@ -10,6 +10,7 @@ import { articleReducer } from './article/article.reducer';
 import { ArticleEffects } from './article/article.effects';
 import { WikipediaAPIService } from './wikipedia.service';
 import { languageReducer } from './language/language.reducer';
+import { LanguageEffects } from './language/language.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,6 +18,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     importProvidersFrom(HttpClientModule), provideAnimationsAsync(),
     provideStore({ article: articleReducer, language: languageReducer }),
-    provideEffects(ArticleEffects)
+    provideEffects(ArticleEffects, LanguageEffects)
   ]
 };

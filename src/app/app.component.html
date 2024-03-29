@@ -4,12 +4,12 @@
       menu
     </mat-icon>
   </button> -->
-  <span>Mit Wikipedia Lernen</span>
+  <span translate="site.title">Mit Wikipedia Lernen</span>
   <span class="spacer"></span>
-  <!-- <mat-select style="width: 200px;">
-    <mat-option>English</mat-option>
-    <mat-option selected>Deutsch</mat-option>
-  </mat-select> -->
+  <mat-select [formControl]="languageSelector" style="width: 120px;">
+    <mat-option value="en">English</mat-option>
+    <mat-option value="de">Deutsch</mat-option>
+  </mat-select>
   <!-- <button mat-icon-button>
     <mat-icon>more_vert</mat-icon>
   </button> -->
@@ -49,14 +49,14 @@
 
     <form class="input-container" [formGroup]="guessForm" (ngSubmit)="submit()">
       <mat-form-field appearance="outline">
-        <mat-label>Guesses</mat-label>
+        <mat-label translate="site.input.guess">Guesses</mat-label>
         <input formControlName="currentGuess" matInput type="text">
       </mat-form-field>
     </form>
   </mat-drawer-content>
 
   <mat-drawer #rightDrawer class="right-sidenav" position="end" [opened]="true" mode="side">
-    <div class="title">Guesses</div>
+    <div class="title" translate="site.tried_words">Guesses</div>
     <p *ngIf="guesses$ | async as guesses">{{ guesses.join(', ') }}</p>
   </mat-drawer>
 </mat-drawer-container>

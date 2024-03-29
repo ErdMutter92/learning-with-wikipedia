@@ -19,6 +19,9 @@ import { Article } from './article/article.model';
 import { articleContent, articleDescription, articleTitle, guesses } from './article/article.selectors';
 import { ADD_GUESS, LOAD_ARTICLE } from './article/article.actions';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { TranslateDirective } from './language/translate.directive';
+import { LanguageSettings } from './language/language.model';
+import { SET_LANGUAGE } from './language/language.actions';
 
 @Component({
   selector: 'app-root',
@@ -27,6 +30,7 @@ import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angu
     CommonModule,
     ReactiveFormsModule,
     ArticleMaskDirective,
+    TranslateDirective,
     RouterOutlet,
     MatToolbarModule,
     MatCardModule,
@@ -67,13 +71,20 @@ export class AppComponent {
     currentGuess: '',
   });
 
+  public languageSelector = new FormControl(Language.deutsch);
+
   constructor(
     private formBuilder: FormBuilder,
     private readonly articleStore: Store<Article>,
+    private readonly languageSettingsStore: Store<LanguageSettings>,
   ) {}
 
   public ngOnInit() {
     this.articleStore.dispatch(LOAD_ARTICLE());
+
+    this.languageSelector.valueChanges.subscribe((language) => {
+      this.articleStore.dispatch(SET_LANGUAGE({ language } as any));
+    })
   }
 
   public submit() {
