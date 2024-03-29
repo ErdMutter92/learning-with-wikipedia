@@ -33,7 +33,13 @@ export class WikipediaAPIService {
 
         return this.language$.pipe(
             switchMap((language: Language) => {
-                return this.httpClient.get(`https://api.wikimedia.org/feed/v1/wikipedia/${language}/featured/${year}/${month}/${day}${cors}`, { headers });
+                return this.httpClient.get(
+                    `https://api.wikimedia.org/feed/v1/wikipedia/${language}/featured/${year}/${month}/${day}${cors}`,
+                    {
+                        headers,
+                        withCredentials: false
+                    }
+                );
             })
         )
     }
