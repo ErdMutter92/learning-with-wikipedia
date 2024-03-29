@@ -25,9 +25,15 @@ export class WikipediaAPIService {
         // headers.set('Authorization', 'Bearer YOUR_ACCESS_TOKEN');
         headers.set('Api-User-Agent', 'Deutsch Vocab Lehnen (bmbleau@gmail.com)');
 
+        let cors = '';
+
+        if (window.location.hostname !== 'localhost') {
+            cors = '?origin=*';
+        }
+
         return this.language$.pipe(
             switchMap((language: Language) => {
-                return this.httpClient.get(`https://api.wikimedia.org/feed/v1/wikipedia/${language}/featured/${year}/${month}/${day}`, { headers });
+                return this.httpClient.get(`https://api.wikimedia.org/feed/v1/wikipedia/${language}/featured/${year}/${month}/${day}${cors}`, { headers });
             })
         )
     }
