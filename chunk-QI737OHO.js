@@ -1,1 +1,0 @@
-var e={site:{title:"Mit Wikipedia Lernen",tried_words:"Vermutungen",input:{guess:"Vermutungen"}},toolbar:{right_sidebar_tooltip:"Toggle Right Sidebar",left_sidebar_tooltip:"Toggle Left Sidebar"}};export{e as a};
