@@ -1,6 +1,6 @@
 export const en = {
     site: {
-        title: 'Learning With Wikipedia',
+        title: 'Learn With Wikipedia',
         tried_words: 'Guesses',
         input: {
             guess: 'Guesses'

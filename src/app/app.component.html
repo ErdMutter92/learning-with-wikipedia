@@ -1,18 +1,10 @@
 <mat-toolbar>
-  <!-- <button mat-icon-button (click)="leftDrawer.toggle()" matTooltip="Toggle Left Sidebar">
-    <mat-icon>
-      menu
-    </mat-icon>
-  </button> -->
-  <span translate="site.title">Mit Wikipedia Lernen</span>
+  <span translate="site.title">Learn With Wikipedia</span>
   <span class="spacer"></span>
   <mat-select [formControl]="languageSelector" style="width: 120px;">
     <mat-option value="en">English</mat-option>
     <mat-option value="de">Deutsch</mat-option>
   </mat-select>
-  <!-- <button mat-icon-button>
-    <mat-icon>more_vert</mat-icon>
-  </button> -->
   <button mat-icon-button (click)="rightDrawer.toggle()" matTooltip="Toggle Right Sidebar">
     <mat-icon>
       menu
@@ -21,10 +13,6 @@
 </mat-toolbar>
 
 <mat-drawer-container class="main-container" autosize>
-  <!-- <mat-drawer #leftDrawer class="left-sidenav" position="start" [opened]="true" mode="side">
-    
-  </mat-drawer> -->
-
   <mat-drawer-content class="content-container">
     <ng-container *ngIf="(article$ | async) as featuredArticle">
       <mat-card class="lesson-card">
@@ -40,10 +28,6 @@
             [guesses]="guesses$ | async" 
           >{{ word }}</span>
         </mat-card-content>
-        <mat-card-actions>
-          <!-- <button mat-button>LIKE</button>
-          <button mat-button>SHARE</button> -->
-        </mat-card-actions>
       </mat-card>
     </ng-container>
 
