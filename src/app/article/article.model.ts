@@ -1,5 +1,6 @@
 export interface Article {
     id?: string;
+    lang: string;
     title: string | null;
     content: string | null;
     description: string | null;

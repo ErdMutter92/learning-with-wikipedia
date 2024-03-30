@@ -8,24 +8,24 @@ export const articleReducer = createReducer<Library>(
         ...state,
         articles: {
             ...state.articles,
-            [state.selected as string]: {
+            [id]: {
                 ...state.articles[id],
                 guesses: Array.from(new Set(state.articles[id].guesses).add(guess)),
             },
         },
     })),
-    on(CLEAR_GUESSES, (state) => ({
+    on(CLEAR_GUESSES, (state, { id }) => ({
         ...state,
         articles: {
             ...state.articles,
-            [state.selected as string]: {
-                ...state.articles[state.selected as string],
+            [id]: {
+                ...state.articles[id],
                 guesses: [],
             },
         },
     })),
     on(LOAD_ARTICLE, (state) => ({ ...state, loading: true })),
-    on(SELECT_ARTICLE, (state, { id: selected }) => ({...state, selected })),
+    on(SELECT_ARTICLE, (state, { id: selected }) => ({...state, selected, loading: false })),
     on(ARTICLE_LOADED, (state, { article }) => ({
         ...state,
         loading: false,
@@ -33,7 +33,11 @@ export const articleReducer = createReducer<Library>(
             ...state.articles,
             [article.id]: {
                 ...article,
-                splitContent: splitter(article.content)
+                splitContent: splitter(article.content),
+                guesses: [
+                    ...splitter(article.title),
+                    ...(state.articles?.[article.id]?.guesses ?? [])
+                ]
             },
         } as any,
     })),

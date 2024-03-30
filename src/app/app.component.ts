@@ -24,6 +24,10 @@ import { LanguageSettings } from './language/language.model';
 import { SET_LANGUAGE } from './language/language.actions';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
+function noWhitespaceValidator(control: FormControl) {
+  return (control.value || '').trim().length? null : { 'whitespace': true };       
+}
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -70,7 +74,6 @@ export class AppComponent {
       description,
       content
     })),
-    tap(console.log)
   );
 
   public guessForm = this.formBuilder.group({
@@ -96,7 +99,6 @@ export class AppComponent {
   }
 
   public submit() {
-    console.log(this.guessForm.value);
     const guess = this.guessForm.value.currentGuess;
 
     if (guess) {

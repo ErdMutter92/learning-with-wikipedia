@@ -56,14 +56,14 @@ export class ArticleMaskDirective {
                     this.renderer.removeClass(this._element.nativeElement, 'masked--hot');
                     
                     this.renderer.addClass(this._element.nativeElement, 'masked--cold');
-                    console.log('because of "', test.item, '" we marked "', this.word, '" as cold with a score of', test.score);
+                    // console.log('because of "', test.item, '" we marked "', this.word, '" as cold with a score of', test.score);
                 } else if (this._element.nativeElement && test.score && test.score <= 0.05) {
                     this.renderer.removeClass(this._element.nativeElement, 'masked--warmer');
                     this.renderer.removeClass(this._element.nativeElement, 'masked--cold');
                     this.renderer.removeClass(this._element.nativeElement, 'masked--hot');
                     
                     this.renderer.addClass(this._element.nativeElement, 'masked--warm');
-                    console.log('because of "', test.item, '" we marked "', this.word, '" as warm with a score of', test.score);
+                    // console.log('because of "', test.item, '" we marked "', this.word, '" as warm with a score of', test.score);
 
                 } else if (this._element.nativeElement && test.score && test.score <= 0.1) {
                     this.renderer.removeClass(this._element.nativeElement, 'masked--warm');
@@ -71,7 +71,7 @@ export class ArticleMaskDirective {
                     this.renderer.removeClass(this._element.nativeElement, 'masked--hot');
                     
                     this.renderer.addClass(this._element.nativeElement, 'masked--warmer');
-                    console.log('because of "', test.item, '" we marked "', this.word, '" as warmer with a score of', test.score);
+                    // console.log('because of "', test.item, '" we marked "', this.word, '" as warmer with a score of', test.score);
 
                 } else if (this._element.nativeElement && test.score && test.score <= 0.2) {
                     this.renderer.removeClass(this._element.nativeElement, 'masked--warm');
@@ -79,7 +79,7 @@ export class ArticleMaskDirective {
                     this.renderer.removeClass(this._element.nativeElement, 'masked--warmer');
 
                     this.renderer.addClass(this._element.nativeElement, 'masked--hot');
-                    console.log('because of "', test.item, '" we marked "', this.word, '" as hot with a score of', test.score);
+                    // console.log('because of "', test.item, '" we marked "', this.word, '" as hot with a score of', test.score);
                 }
             }
         }

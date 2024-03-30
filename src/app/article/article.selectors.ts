@@ -1,5 +1,6 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { Article, Library } from "./article.model";
+import { selectedLanguage } from "../language/language.selectors";
 
 export const ARTICLE_FEATURE = 'article';
 
@@ -18,8 +19,10 @@ export const guesses = createSelector(article, (state: Article) => state?.guesse
 
 export const loading = createSelector(library, (state: Library) => state.loading);
 
-export const articleList = createSelector(library, (library: Library) => {
-    return Object.values(library.articles).map(article => {
+export const articleList = createSelector(library, selectedLanguage, (library: Library, selectedLanguage: string) => {
+    return Object.values(library.articles).filter(article => {
+        return article.lang === selectedLanguage;
+    }).map(article => {
         return [article.id, article.title];
     });
 });
