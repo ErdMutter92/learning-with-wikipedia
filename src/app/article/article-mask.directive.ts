@@ -54,7 +54,13 @@ export class ArticleMaskDirective {
 
             const test = fuse.search(this.word)?.[0];
             if (test) {
-                if (test.score === 0) {
+                if (this.unmasked && test.score !== 0) {
+                    this.renderer.addClass(this._element.nativeElement, 'masked--show');
+                    this.renderer.removeClass(this._element.nativeElement, 'masked--warm');
+                    this.renderer.removeClass(this._element.nativeElement, 'masked--hot');
+                    this.renderer.removeClass(this._element.nativeElement, 'masked--cold');
+                    this.renderer.removeClass(this._element.nativeElement, 'masked--warmer');
+                } else if (test.score === 0) {
                     this.renderer.removeClass(this._element.nativeElement, 'masked');
                     this.renderer.removeClass(this._element.nativeElement, 'masked--warm');
                     this.renderer.removeClass(this._element.nativeElement, 'masked--hot');

@@ -8,6 +8,8 @@ export const SELECT_ARTICLE = createAction('[Article] Select', props<{ id: strin
 
 export const ADD_ARTICLE = createAction('[Article] Add Article', props<{ title: string }>());
 export const TOGGLE_ARTICLE_MASK = createAction('[Article] Toggle Masks', props<{ id: string }>());
+export const ARTICLE_UNMASK = createAction('[Article] Remove Masks', props<{ id: string }>());
+export const RESET_ARTICLE = createAction('[Article] Reset', props<{ id: string }>());
 
 export const ARTICLE_LOADED = createAction('[Article] Article Loaded', props<{
     article: {

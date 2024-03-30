@@ -17,7 +17,7 @@ import { ArticleMaskDirective } from './article/article-mask.directive';
 import { Store, select } from '@ngrx/store';
 import { Article } from './article/article.model';
 import { articleContent, articleDescription, articleList, articleTitle, articleUnmasked, guesses, loading, selectedId } from './article/article.selectors';
-import { ADD_ARTICLE, ADD_GUESS, LOAD_ARTICLE, SELECT_ARTICLE, TOGGLE_ARTICLE_MASK } from './article/article.actions';
+import { ADD_ARTICLE, ADD_GUESS, ARTICLE_UNMASK, LOAD_ARTICLE, RESET_ARTICLE, SELECT_ARTICLE, TOGGLE_ARTICLE_MASK } from './article/article.actions';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateDirective } from './language/translate.directive';
 import { LanguageSettings } from './language/language.model';
@@ -150,7 +150,11 @@ export class AppComponent {
     this.articleStore.dispatch(SELECT_ARTICLE({ id }));
   }
 
+  public resetArticle(id: string) {
+    this.articleStore.dispatch(RESET_ARTICLE({ id }));
+  }
+
   public unmask(id: string) {
-    this.articleStore.dispatch(TOGGLE_ARTICLE_MASK({ id }));
+    this.articleStore.dispatch(ARTICLE_UNMASK({ id }));
   }
 }
