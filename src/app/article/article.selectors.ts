@@ -1,6 +1,7 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { Article, Library } from "./article.model";
 import { selectedLanguage } from "../language/language.selectors";
+import { SPECALS } from "./specals.const";
 
 export const ARTICLE_FEATURE = 'library';
 
@@ -27,4 +28,22 @@ export const articleList = createSelector(library, selectedLanguage, (library: L
     }).map(article => {
         return [article.id, article.title];
     });
+});
+
+export const allArticles = createSelector(library, selectedLanguage, (library: Library, language: string) => Object.values(library.articles).filter(article => article.lang === language));
+
+export const allGuesses = createSelector(allArticles, (articles: Article[]) => Array.from(new Set(articles.map(article => article.guesses).flat())));
+
+export const allWords = createSelector(allArticles, (articles: Article[]) => Array.from(
+    new Set(
+        articles
+            .map(article => article.splitContent)
+            .flat()
+            .filter(word => !SPECALS.includes(word))
+        )
+    )
+);
+
+export const allUngessedWords = createSelector(allGuesses, allWords, (guesses, words) => {
+    return words.filter(word => !guesses.map(guess => guess.toLowerCase()).includes(word.toLowerCase()));
 });

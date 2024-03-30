@@ -23,11 +23,6 @@ export const de = {
             intro: 'The text box at the top allows you to add articles to your select language\'s list. Progress on articles is saved locally, so feel free to switch between them freely.'
         },
         {
-            element: '[data-intro-id="lesson-card"]',
-            title: 'Your current article',
-            intro: 'Here is your active article. For each word you guess correctly they will appear before your eyes here. If you guesses are close enough the colors will change to provide hints to what is underneath.'
-        },
-        {
             element: '[data-intro-id="guess-input"]',
             title: 'Input your guesses',
             intro: 'Type your guesses into this box. Upon pressing enter your guess will be checked with all the words in the article and added to your guess list.'
@@ -36,6 +31,11 @@ export const de = {
             element: '[data-intro-id="right-drawer"]',
             title: 'Past guesses',
             intro: 'You can track what you have entered into the text box here.'
+        },
+        {
+            element: '[data-intro-id="lesson-card"]',
+            title: 'Your current article',
+            intro: 'Here is your active article. For each word you guess correctly they will appear before your eyes here. If you guesses are close enough the colors will change to provide hints to what is underneath.'
         },
         {
             element: '[data-intro-id="buy-me-a-coffee"]',

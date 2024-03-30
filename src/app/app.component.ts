@@ -12,11 +12,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
 import { Observable, combineLatest, combineLatestAll, concatAll, forkJoin, map, of, shareReplay, startWith, take, tap } from 'rxjs';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { Language } from './language/language.enum';
 import { ArticleMaskDirective } from './article/article-mask.directive';
 import { Store, select } from '@ngrx/store';
 import { Article } from './article/article.model';
-import { articleContent, articleDescription, articleList, articleTitle, articleUnmasked, guesses, loading, selectedId } from './article/article.selectors';
+import { allGuesses, allUngessedWords, allWords, articleContent, articleDescription, articleList, articleTitle, articleUnmasked, guesses, loading, selectedId } from './article/article.selectors';
 import { ADD_ARTICLE, ADD_GUESS, ARTICLE_UNMASK, LOAD_ARTICLE, RESET_ARTICLE, SELECT_ARTICLE, TOGGLE_ARTICLE_MASK } from './article/article.actions';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateDirective } from './language/translate.directive';
@@ -25,6 +26,7 @@ import { SET_LANGUAGE } from './language/language.actions';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { selectedLanguage, translation } from './language/language.selectors';
 import introJs from 'intro.js';
+import { MatDividerModule } from '@angular/material/divider';
 
 function noWhitespaceValidator(control: FormControl) {
   return (control.value || '').trim().length? null : { 'whitespace': true };       
@@ -48,6 +50,8 @@ function noWhitespaceValidator(control: FormControl) {
     MatIconModule,
     MatTooltipModule,
     MatInputModule,
+    MatDividerModule,
+    MatExpansionModule,
     MatProgressSpinnerModule
   ],
   providers: [WikipediaAPIService],
@@ -70,6 +74,8 @@ export class AppComponent {
   public readonly guesses$ = this.articleStore.pipe(select(guesses));
 
   public readonly articles$ = this.articleStore.pipe(select(articleList));
+
+  public readonly wordbank$ = this.articleStore.pipe(select(allUngessedWords));
 
   public readonly article$ = combineLatest(
     [this.title$, this.description$, this.content$, this.unmasked$, this.articleId$]
