@@ -16,8 +16,8 @@ import { Language } from './language/language.enum';
 import { ArticleMaskDirective } from './article/article-mask.directive';
 import { Store, select } from '@ngrx/store';
 import { Article } from './article/article.model';
-import { articleContent, articleDescription, articleList, articleTitle, guesses, loading, selectedId } from './article/article.selectors';
-import { ADD_GUESS, LOAD_ARTICLE } from './article/article.actions';
+import { articleContent, articleDescription, articleList, articleTitle, articleUnmasked, guesses, loading, selectedId } from './article/article.selectors';
+import { ADD_ARTICLE, ADD_GUESS, LOAD_ARTICLE, SELECT_ARTICLE, UNMASK_ARTICLE } from './article/article.actions';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateDirective } from './language/translate.directive';
 import { LanguageSettings } from './language/language.model';
@@ -64,6 +64,7 @@ export class AppComponent {
 
   public readonly articleId$ = this.articleStore.pipe(select(selectedId));
   public readonly title$ = this.articleStore.pipe(select(articleTitle));
+  public readonly unmasked$ = this.articleStore.pipe(select(articleUnmasked));
   public readonly description$ = this.articleStore.pipe(select(articleDescription));
   public readonly content$ = this.articleStore.pipe(select(articleContent));
   public readonly guesses$ = this.articleStore.pipe(select(guesses));
@@ -71,13 +72,15 @@ export class AppComponent {
   public readonly articles$ = this.articleStore.pipe(select(articleList));
 
   public readonly article$ = combineLatest(
-    [this.title$, this.description$, this.content$]
+    [this.title$, this.description$, this.content$, this.unmasked$, this.articleId$]
   ).pipe(
     shareReplay(1),
-    map(([title, description, content]) => ({
+    map(([title, description, content, unmasked, id]) => ({
+      id,
       title,
       description,
-      content
+      content,
+      unmasked,
     })),
   );
 
@@ -86,6 +89,9 @@ export class AppComponent {
   });
 
   public languageSelector = new FormControl(Language.deutsch);
+  public articleSearch = this.formBuilder.group({
+    search: '',
+  });
 
   constructor(
     private formBuilder: FormBuilder,
@@ -111,7 +117,7 @@ export class AppComponent {
       if (language) this.languageSelector.setValue(language);
     });
     
-    this.articleStore.dispatch(LOAD_ARTICLE());
+    this.articleStore.dispatch(LOAD_ARTICLE({ title: 'Wikipedia' }));
 
     this.languageSelector.valueChanges.subscribe((language) => {
       this.articleStore.dispatch(SET_LANGUAGE({ language } as any));
@@ -128,5 +134,23 @@ export class AppComponent {
         this.guessForm.reset();
       })
     }
+  }
+
+  public addArticle() {
+    const value = this.articleSearch.value.search;
+
+    if (value) {
+      this.articleStore.dispatch(LOAD_ARTICLE({ title: value }));
+
+      this.articleSearch.reset();
+    }
+  }
+
+  public selectArticle(id: any) {
+    this.articleStore.dispatch(SELECT_ARTICLE({ id }));
+  }
+
+  public unmask(id: string) {
+    this.articleStore.dispatch(UNMASK_ARTICLE({ id }));
   }
 }

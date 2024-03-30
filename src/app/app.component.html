@@ -22,15 +22,20 @@
 
 <mat-drawer-container class="main-container" autosize>
   <mat-drawer #leftDrawer class="left-sidenav" position="start" data-intro-id="left-drawer" [opened]="true" mode="side">
-    <form class="input-container" [formGroup]="guessForm" (ngSubmit)="submit()">
-      <mat-form-field appearance="fill" disabled>
+    <form class="input-container" [formGroup]="articleSearch" (ngSubmit)="addArticle()">
+      <mat-form-field appearance="fill">
         <mat-label translate="site.input.article">Article</mat-label>
-        <input matInput type="text" [disabled]="true">
+        <input formControlName="search" matInput type="text">
       </mat-form-field>
     </form>
 
-    <mat-list>
-      <mat-list-item *ngFor="let item of articles$ | async">{{ item[1] }}</mat-list-item>
+    <mat-list *ngIf="articleId$ | async as currentArticleId">
+      <mat-list-item
+        (click)="selectArticle(item[0])"
+        class="select-article"
+        [ngClass]="{ 'selected': currentArticleId === item[0] }"
+        *ngFor="let item of articles$ | async"
+      ><span [ngClass]="{ 'selected-article': currentArticleId === item[0] }">{{ item[1] }}</span></mat-list-item>
     </mat-list>
   </mat-drawer>
 
@@ -60,9 +65,16 @@
               *ngFor="let word of featuredArticle.content"
               mask
               [word]="word"
+              [unmasked]="featuredArticle.unmasked"
               [guesses]="guesses$ | async" 
             >{{ word }}</span>
           </mat-card-content>
+          <mat-card-actions>
+            <span class="spacer"></span>
+            <button mat-icon-button (click)="unmask(featuredArticle.id)" matTooltip="umask all words">
+              <mat-icon>visibility</mat-icon>
+            </button>
+          </mat-card-actions>
         </mat-card>
       </ng-container>
     </ng-template>

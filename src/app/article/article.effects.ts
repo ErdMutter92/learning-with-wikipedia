@@ -11,7 +11,7 @@ export class ArticleEffects {
     public readonly loadArticle$ = createEffect(() => this.actions$.pipe(
         ofType(LOAD_ARTICLE),
         withLatestFrom(this.store),
-        switchMap(([_, state]) => this.wikipediaApi.getArticle('Wikipedia').pipe(
+        switchMap(([{ title }, state]) => this.wikipediaApi.getArticle(title).pipe(
             switchMap((response: any) => [
                 ...(!state.articles?.[response?.pageid] ? [ARTICLE_LOADED({
                     article: {

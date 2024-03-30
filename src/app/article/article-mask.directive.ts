@@ -17,6 +17,8 @@ export class ArticleMaskDirective {
      */
     @Input() word!: string;
 
+    @Input() unmasked?: boolean;
+
     constructor(
         private readonly _element: ElementRef,
         private readonly renderer: Renderer2,
@@ -32,7 +34,7 @@ export class ArticleMaskDirective {
 
     public adjustClasses() {
         this.renderer.addClass(this._element.nativeElement, 'masked');
-        
+
         if (SPECALS.includes(this.word)) {
             this.renderer.addClass(this._element.nativeElement, 'specal');
         } else if (this.guesses) {
@@ -82,6 +84,12 @@ export class ArticleMaskDirective {
                     this.renderer.addClass(this._element.nativeElement, 'masked--hot');
                     // console.log('because of "', test.item, '" we marked "', this.word, '" as hot with a score of', test.score);
                 }
+            } else if (this.unmasked) {
+                this.renderer.addClass(this._element.nativeElement, 'masked--show');
+                this.renderer.removeClass(this._element.nativeElement, 'masked--warm');
+                this.renderer.removeClass(this._element.nativeElement, 'masked--hot');
+                this.renderer.removeClass(this._element.nativeElement, 'masked--cold');
+                this.renderer.removeClass(this._element.nativeElement, 'masked--warmer');
             }
         }
     }

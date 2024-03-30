@@ -90,6 +90,18 @@
       }
     }
   }
+
+  .select-article {
+    cursor: pointer;
+  }
+
+  .selected-article {
+    font-weight: bold;
+  }
+
+  ::ng-deep mat-list mat-list-item.selected {
+    background-color: lighten(lightgray, 10%);
+  }
 }
 
 .masked {
@@ -103,6 +115,11 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+
+  &--show {
+    background-color: transparent;
+    color: red;
+  }
 
   &--cold {
     background-color: lightblue;

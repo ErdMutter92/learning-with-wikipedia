@@ -1,5 +1,6 @@
 export interface Article {
     id?: string;
+    unmasked?: boolean;
     lang: string;
     title: string | null;
     content: string | null;

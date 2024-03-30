@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { Article, Library } from "./article.model";
-import { ADD_GUESS, ARTICLE_LOADED, CLEAR_GUESSES, LOAD_ARTICLE, SELECT_ARTICLE } from "./article.actions";
+import { ADD_GUESS, ARTICLE_LOADED, CLEAR_GUESSES, LOAD_ARTICLE, SELECT_ARTICLE, UNMASK_ARTICLE } from "./article.actions";
 import { SPECALS } from "./specals.const";
 
 export const articleReducer = createReducer<Library>(
@@ -26,6 +26,7 @@ export const articleReducer = createReducer<Library>(
         },
     })),
     on(LOAD_ARTICLE, (state) => ({ ...state, loading: true })),
+    on(UNMASK_ARTICLE, (state, { id }) => ({...state, articles: { ...state.articles, [id]: { ...state.articles[id], unmasked: true }}})),
     on(SELECT_ARTICLE, (state, { id: selected }) => ({...state, selected, loading: false })),
     on(ARTICLE_LOADED, (state, { article }) => ({
         ...state,
