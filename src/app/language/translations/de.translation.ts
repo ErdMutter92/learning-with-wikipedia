@@ -40,7 +40,7 @@ export const de = {
         {
             element: '[data-intro-id="buy-me-a-coffee"]',
             title: 'Please consider donating',
-            intro: 'Sometime in the future, if you are able to and have gotten some good use out of this app, please consider donating. This will help me bring more educational resources to people for free.'
+            intro: 'Sometime in the future, if you are able to and have gotten some good use out of this app, please consider donating. This will help me bring more educational resources to people for free. <br /><br /><a href="https://www.buymeacoffee.com/bmbleau">Buy me a Radler</a>'
         }
     ],
     toolbar: {
