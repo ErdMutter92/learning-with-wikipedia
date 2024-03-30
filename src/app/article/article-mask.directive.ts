@@ -34,14 +34,21 @@ export class ArticleMaskDirective {
 
     public adjustClasses() {
         this.renderer.addClass(this._element.nativeElement, 'masked');
+        this.renderer.removeClass(this._element.nativeElement, 'masked--show');
 
         if (SPECALS.includes(this.word)) {
+            this.renderer.removeClass(this._element.nativeElement, 'masked');
+            this.renderer.removeClass(this._element.nativeElement, 'masked--warm');
+            this.renderer.removeClass(this._element.nativeElement, 'masked--hot');
+            this.renderer.removeClass(this._element.nativeElement, 'masked--cold');
+            this.renderer.removeClass(this._element.nativeElement, 'masked--warmer');
+
             this.renderer.addClass(this._element.nativeElement, 'specal');
         } else if (this.guesses) {
             const fuse = new Fuse(this.guesses, {
                 keys: ['word'],
                 includeScore: true,
-                isCaseSensitive: true,
+                isCaseSensitive: false,
                 threshold: 0.3
             });
 

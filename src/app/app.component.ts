@@ -11,13 +11,13 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
-import { Observable, combineLatest, map, of, shareReplay, startWith, take, tap } from 'rxjs';
+import { Observable, combineLatest, combineLatestAll, concatAll, forkJoin, map, of, shareReplay, startWith, take, tap } from 'rxjs';
 import { Language } from './language/language.enum';
 import { ArticleMaskDirective } from './article/article-mask.directive';
 import { Store, select } from '@ngrx/store';
 import { Article } from './article/article.model';
 import { articleContent, articleDescription, articleList, articleTitle, articleUnmasked, guesses, loading, selectedId } from './article/article.selectors';
-import { ADD_ARTICLE, ADD_GUESS, LOAD_ARTICLE, SELECT_ARTICLE, UNMASK_ARTICLE } from './article/article.actions';
+import { ADD_ARTICLE, ADD_GUESS, LOAD_ARTICLE, SELECT_ARTICLE, TOGGLE_ARTICLE_MASK } from './article/article.actions';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateDirective } from './language/translate.directive';
 import { LanguageSettings } from './language/language.model';
@@ -108,7 +108,7 @@ export class AppComponent {
           dontShowAgainCookie: 'tutor-v1-bwn-wiki-learning',
           steps
         }).start();
-      }, 100);
+      }, 300);
     });
   }
 
@@ -137,10 +137,10 @@ export class AppComponent {
   }
 
   public addArticle() {
-    const value = this.articleSearch.value.search;
+    const title = this.articleSearch.value.search;
 
-    if (value) {
-      this.articleStore.dispatch(LOAD_ARTICLE({ title: value }));
+    if (title) {
+      this.articleStore.dispatch(LOAD_ARTICLE({ title }));
 
       this.articleSearch.reset();
     }
@@ -151,6 +151,6 @@ export class AppComponent {
   }
 
   public unmask(id: string) {
-    this.articleStore.dispatch(UNMASK_ARTICLE({ id }));
+    this.articleStore.dispatch(TOGGLE_ARTICLE_MASK({ id }));
   }
 }

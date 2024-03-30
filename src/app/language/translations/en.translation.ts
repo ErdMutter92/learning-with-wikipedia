@@ -3,7 +3,7 @@ export const en = {
         title: 'Learn With Wikipedia',
         tried_words: 'Guesses',
         input: {
-            article: 'Article',
+            article: 'Add Article...',
             guess: 'Guesses'
         },
     },
@@ -16,6 +16,11 @@ export const en = {
             element: '[data-intro-id="language-selector"]',
             title: 'Choose your language',
             intro: 'We support multiple languages. You are welcome to switch between and use as many of them as you wish. Your progress is saved as you go.'
+        },
+        {
+            element: '[data-intro-id="left-drawer"]',
+            title: 'Add and select different articles',
+            intro: 'The text box at the top allows you to add articles to your select language\'s list. Progress on articles is saved locally, so feel free to switch between them freely.'
         },
         {
             element: '[data-intro-id="lesson-card"]',

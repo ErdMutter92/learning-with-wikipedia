@@ -7,7 +7,7 @@ export const LOAD_ARTICLE = createAction('[Article] Load Article', props<{ title
 export const SELECT_ARTICLE = createAction('[Article] Select', props<{ id: string }>());
 
 export const ADD_ARTICLE = createAction('[Article] Add Article', props<{ title: string }>());
-export const UNMASK_ARTICLE = createAction('[Article] Unmask All', props<{ id: string }>());
+export const TOGGLE_ARTICLE_MASK = createAction('[Article] Toggle Masks', props<{ id: string }>());
 
 export const ARTICLE_LOADED = createAction('[Article] Article Loaded', props<{
     article: {
