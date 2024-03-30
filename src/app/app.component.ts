@@ -173,4 +173,13 @@ export class AppComponent {
   public unmask(id: string) {
     this.articleStore.dispatch(ARTICLE_UNMASK({ id }));
   }
+
+  public checkGuessInput(event: KeyboardEvent) {
+    if (event.key === ' ') {
+      event.stopPropagation();
+      return false;
+    }
+
+    return true;
+  }
 }

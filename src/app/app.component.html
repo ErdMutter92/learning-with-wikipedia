@@ -16,15 +16,6 @@
     <mat-option value="en">English</mat-option>
     <mat-option value="de">Deutsch</mat-option>
   </mat-select>
-  <!-- <a
-    href="https://www.buymeacoffee.com/bmbleau"
-    data-intro-id="buy-me-a-coffee"
-    target="_blank"
-    mat-icon-button
-    matTooltip="Buy me a coffee"
-  >
-    <mat-icon>coffee</mat-icon>
-  </a> -->
   <button
     mat-icon-button
     (click)="rightDrawer.toggle()"
@@ -116,6 +107,7 @@
             <mat-label translate="site.input.guess">Guesses</mat-label>
             <input
               formControlName="currentGuess"
+              (keypress)="checkGuessInput($event)"
               matInput
               type="text"
               [readOnly]="!!(article$ | async)?.unmasked"
