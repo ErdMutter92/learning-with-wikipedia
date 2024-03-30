@@ -24,6 +24,7 @@ import { LanguageSettings } from './language/language.model';
 import { SET_LANGUAGE } from './language/language.actions';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { selectedLanguage } from './language/language.selectors';
+import introJs from 'intro.js';
 
 function noWhitespaceValidator(control: FormControl) {
   return (control.value || '').trim().length? null : { 'whitespace': true };       
@@ -91,14 +92,53 @@ export class AppComponent {
     private readonly languageSettingsStore: Store<LanguageSettings>,
   ) {}
 
+  public ngAfterViewInit() {
+    setTimeout(() => {
+      introJs().setOptions({
+        tooltipClass: 'eTutor',
+        dontShowAgain: true,
+        dontShowAgainCookie: 'tutor-v1-bwn-wiki-learning',
+        steps: [
+          {
+            title: 'Welcome to Wiki Learning by BWN',
+            intro: 'Allow me to introduce you to Wiki Learning from Bleau Web Network. Before getting into the app this tutorial is here to show you the ropes.'
+          },
+          {
+            element: '[data-intro-id="language-selector"]',
+            title: 'Choose your language',
+            intro: 'We support multiple languages. You are welcome to switch between and use as many of them as you wish. Your progress is saved as you go.'
+          },
+          {
+            element: '[data-intro-id="lesson-card"]',
+            title: 'Redacted Wiki Article',
+            intro: 'Here is your active article. For each word you guess correctly they will appear before your eyes. Complete the entire article to read the full thing!'
+          },
+          {
+            element: '[data-intro-id="guess-input"]',
+            title: 'One guess at a time!',
+            intro: 'Type your guesses into this box. Upon pressing enter your guess will be checked with all the words in the article and added to zour guess list.'
+          },
+          {
+            element: '[data-intro-id="right-drawer"]',
+            title: 'Past guesses',
+            intro: 'You can track what you have entered into the text box here.'
+          },
+          {
+            element: '[data-intro-id="buy-me-a-coffee"]',
+            title: 'Please consider donating',
+            intro: 'Sometime in the future, if you are able to and have gotten some good use out of this app, please consider donating. This will help me bring more educational resources to people for free.'
+          }
+        ]
+      }).start();
+    }, 100);
+  }
+
   public ngOnInit() {
     this.language$.pipe(take(1)).subscribe((language: any) => {
       if (language) this.languageSelector.setValue(language);
     });
     
     this.articleStore.dispatch(LOAD_ARTICLE());
-
-    this.articleStore.subscribe(console.log);
 
     this.languageSelector.valueChanges.subscribe((language) => {
       this.articleStore.dispatch(SET_LANGUAGE({ language } as any));

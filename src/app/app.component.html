@@ -6,11 +6,11 @@
   </button>
   <span translate="site.title">Learn With Wikipedia</span>
   <span class="spacer"></span>
-  <mat-select [formControl]="languageSelector" style="width: 120px;">
+  <mat-select [formControl]="languageSelector" data-intro-id="language-selector" style="width: 120px;">
     <mat-option value="en">English</mat-option>
     <mat-option value="de">Deutsch</mat-option>
   </mat-select>
-  <a href="https://www.buymeacoffee.com/bmbleau" target="_blank" mat-icon-button matTooltip="Buy me a coffee">
+  <a href="https://www.buymeacoffee.com/bmbleau" data-intro-id="buy-me-a-coffee" target="_blank" mat-icon-button matTooltip="Buy me a coffee">
     <mat-icon>coffee</mat-icon>
   </a>
   <button mat-icon-button (click)="rightDrawer.toggle()" matTooltip="Toggle Right Sidebar">
@@ -21,7 +21,7 @@
 </mat-toolbar>
 
 <mat-drawer-container class="main-container" autosize>
-  <mat-drawer #leftDrawer class="left-sidenav" position="start" [opened]="true" mode="side">
+  <mat-drawer #leftDrawer class="left-sidenav" position="start" data-intro-id="left-drawer" [opened]="true" mode="side">
     <form class="input-container" [formGroup]="guessForm" (ngSubmit)="submit()">
       <mat-form-field appearance="fill" disabled>
         <mat-label translate="site.input.article">Article</mat-label>
@@ -42,7 +42,7 @@
     </ng-container>
 
     <ng-template #content>
-      <form class="input-container" [formGroup]="guessForm" (ngSubmit)="submit()">
+      <form class="input-container" [formGroup]="guessForm" (ngSubmit)="submit()" data-intro-id="guess-input">
         <mat-form-field appearance="outline">
           <mat-label translate="site.input.guess">Guesses</mat-label>
           <input formControlName="currentGuess" matInput type="text">
@@ -50,7 +50,7 @@
       </form>
 
       <ng-container *ngIf="(article$ | async) as featuredArticle">
-        <mat-card class="lesson-card">
+        <mat-card class="lesson-card"  data-intro-id="lesson-card">
           <mat-card-header>
             <mat-card-title>{{ featuredArticle.title }}</mat-card-title>
             <mat-card-subtitle>{{ featuredArticle.description }}</mat-card-subtitle>
@@ -69,7 +69,9 @@
   </mat-drawer-content>
 
   <mat-drawer #rightDrawer class="right-sidenav" position="end" [opened]="true" mode="side">
-    <div class="title" translate="site.tried_words">Guesses</div>
-    <p *ngIf="guesses$ | async as guesses">{{ guesses.join(', ') }}</p>
+    <div data-intro-id="right-drawer">
+      <div class="title" translate="site.tried_words">Guesses</div>
+      <p *ngIf="guesses$ | async as guesses">{{ guesses.join(', ') }}</p>
+    </div>
   </mat-drawer>
 </mat-drawer-container>

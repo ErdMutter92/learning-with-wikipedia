@@ -2772,6 +2772,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/intro.js@^5.1.5":
+  version "5.1.5"
+  resolved "https://registry.yarnpkg.com/@types/intro.js/-/intro.js-5.1.5.tgz#163b3808c70392636d691e1e9cfac901bbfaf0e9"
+  integrity sha512-TT1d8ayz07svlBcoqh26sNpQaU6bBpdFcCC+IMZHp46NNX2mYAHAVefM3wCmQSd4UWhhObeMjFByw2IaPKOXlw==
+
 "@types/jasmine@~5.1.0":
   version "5.1.4"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-5.1.4.tgz#0de3f6ca753e10d1600ce1864ae42cfd47cf9924"
@@ -4820,6 +4825,11 @@ inquirer@9.2.15:
     string-width "^4.2.3"
     strip-ansi "^6.0.1"
     wrap-ansi "^6.2.0"
+
+intro.js@^7.2.0:
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/intro.js/-/intro.js-7.2.0.tgz#e58e8fee4f6b43d6e0fcb264c9ca8a0f0565026d"
+  integrity sha512-qbMfaB70rOXVBceIWNYnYTpVTiZsvQh/MIkfdQbpA9di9VBfj1GigUPfcCv3aOfsbrtPcri8vTLTA4FcEDcHSQ==
 
 ip-address@^9.0.5:
   version "9.0.5"
