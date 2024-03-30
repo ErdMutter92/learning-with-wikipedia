@@ -1,6 +1,7 @@
 import { createReducer, on } from "@ngrx/store";
 import { Article, Library } from "./article.model";
 import { ADD_GUESS, ARTICLE_LOADED, CLEAR_GUESSES, LOAD_ARTICLE, SELECT_ARTICLE } from "./article.actions";
+import { SPECALS } from "./specals.const";
 
 export const articleReducer = createReducer<Library>(
     { loading: true, selected: undefined, articles: {} },
@@ -34,19 +35,17 @@ export const articleReducer = createReducer<Library>(
             [article.id]: {
                 ...article,
                 splitContent: splitter(article.content),
-                guesses: Array.from([
+                guesses: Array.from(new Set([
                     ...splitter(article.title),
                     ...(state.articles?.[article.id]?.guesses ?? [])
-                ]),
+                ])),
             },
         } as any,
     })),
 )
 
 function splitter(sentence: string): string[] {
-    const specals = ['.', ',', ')', '(', '!', '?', '-']
-
-    return specals
+    return SPECALS
         .reduce((sentence, specal) => sentence?.split(specal).join(" " + specal + " "), sentence)
         ?.split(" ")
         ?.filter((word) => !!word) ?? [];
