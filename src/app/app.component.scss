@@ -3,11 +3,27 @@
   flex-direction: column;
   height: 100%;
 
+  mat-divider.mat-divider-vertical {
+    height: 100%;
+    border-right-color: rgba(0,0,0,0.05);
+    border-right-width: 2px;
+  }
+
   mat-toolbar {
     height: 64px;
     display: flex;
     gap: 10px;
-    border-bottom: 1px solid lightgray;
+
+    &.header {
+      border-bottom: 1px solid lightgray;
+    }
+
+    &.footer {
+      position: fixed;
+      bottom: 0px;
+      border-top: 1px solid lightgray;
+      font-size: 14px;
+    }
   }
 
   .center-spinner {
@@ -21,7 +37,10 @@
     flex: 1 auto;
 
     .content-container {
-      padding: 20px;
+      
+      .inner {
+        margin: 20px;
+      }
 
       .input-container {
         max-width: 800px;

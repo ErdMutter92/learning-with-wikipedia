@@ -17,6 +17,7 @@ import { Language } from './language/language.enum';
 import { ArticleMaskDirective } from './article/article-mask.directive';
 import { Store, select } from '@ngrx/store';
 import { Article } from './article/article.model';
+import { MatMenuModule } from '@angular/material/menu';
 import { allGuesses, allUngessedWords, allWords, articleContent, articleDescription, articleList, articleTitle, articleUnmasked, guesses, loading, selectedId } from './article/article.selectors';
 import { ADD_ARTICLE, ADD_GUESS, ARTICLE_UNMASK, LOAD_ARTICLE, RESET_ARTICLE, SELECT_ARTICLE, TOGGLE_ARTICLE_MASK } from './article/article.actions';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -52,7 +53,8 @@ function noWhitespaceValidator(control: FormControl) {
     MatInputModule,
     MatDividerModule,
     MatExpansionModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatMenuModule
   ],
   providers: [WikipediaAPIService],
   templateUrl: './app.component.html',
