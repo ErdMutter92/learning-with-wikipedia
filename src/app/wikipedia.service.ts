@@ -15,6 +15,32 @@ export class WikipediaAPIService {
         private readonly languageSettingsStore: Store<LanguageSettings>,
     ) {}
 
+    public getRandomArticle() {
+        // page/random/summary
+
+        const headers = new HttpHeaders();
+        // headers.set('Authorization', 'Bearer YOUR_ACCESS_TOKEN');
+        headers.set('Api-User-Agent', 'Deutsch Vocab Lehnen (bmbleau@gmail.com)');
+
+        let cors = '';
+
+        if (window.location.hostname !== 'localhost') {
+            cors = '?origin=*';
+        }
+
+        return this.language$.pipe(
+            switchMap((language: Language) => {
+                return this.httpClient.get(
+                    `https://api.wikimedia.org/feed/v1/wikipedia/${language}/random/summary${cors}`,
+                    {
+                        headers,
+                        withCredentials: false
+                    }
+                );
+            })
+        )
+    }
+
     public getFeaturedArticle() {
         let today = new Date();
         let year = today.getFullYear();

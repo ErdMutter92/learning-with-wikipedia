@@ -4,4 +4,5 @@ export interface Article {
     description: string | null;
     splitContent: string[];
     guesses: string[];
+    loading: boolean;
 }

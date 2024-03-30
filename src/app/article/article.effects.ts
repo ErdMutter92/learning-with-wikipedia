@@ -11,9 +11,9 @@ export class ArticleEffects {
         switchMap(() => this.wikipediaApi.getFeaturedArticle().pipe(
             map(({tfa}: any) => tfa),
             map((response: any) => ARTICLE_LOADED({
-                title: response.normalizedtitle,
-                content: response.extract,
-                description: response.description,
+                title: response?.titles?.normalized,
+                content: response?.extract,
+                description: response?.description,
             })),
         )),
     ));

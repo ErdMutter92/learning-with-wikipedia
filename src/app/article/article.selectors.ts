@@ -9,3 +9,5 @@ export const articleTitle = createSelector(article, (state: Article) => state.ti
 export const articleDescription = createSelector(article, (state: Article) => state.description);
 export const articleContent = createSelector(article, (state: Article) => state.splitContent);
 export const guesses = createSelector(article, (state: Article) => state.guesses);
+
+export const loading = createSelector(article, (state: Article) => state.loading);

@@ -32,7 +32,7 @@ export class ArticleMaskDirective {
     public adjustClasses() {
         this.renderer.addClass(this._element.nativeElement, 'masked');
         
-        if (['.', ',', ')', '('].includes(this.word)) {
+        if (['.', ',', ')', '(', '1', '2', '3', '3', '4', '5', '6', '7', '8', '9'].includes(this.word)) {
             this.renderer.addClass(this._element.nativeElement, 'specal');
         } else if (this.guesses) {
             const fuse = new Fuse(this.guesses, {

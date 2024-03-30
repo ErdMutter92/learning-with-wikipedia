@@ -16,12 +16,13 @@ import { Language } from './language/language.enum';
 import { ArticleMaskDirective } from './article/article-mask.directive';
 import { Store, select } from '@ngrx/store';
 import { Article } from './article/article.model';
-import { articleContent, articleDescription, articleTitle, guesses } from './article/article.selectors';
+import { articleContent, articleDescription, articleTitle, guesses, loading } from './article/article.selectors';
 import { ADD_GUESS, LOAD_ARTICLE } from './article/article.actions';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateDirective } from './language/translate.directive';
 import { LanguageSettings } from './language/language.model';
 import { SET_LANGUAGE } from './language/language.actions';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-root',
@@ -40,16 +41,17 @@ import { SET_LANGUAGE } from './language/language.actions';
     MatListModule,
     MatIconModule,
     MatTooltipModule,
-    MatInputModule
+    MatInputModule,
+    MatProgressSpinnerModule
   ],
   providers: [WikipediaAPIService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'wiki-de';
-
   public readonly languageSettings$ = of({ language: Language.deutsch });
+
+  public readonly loading$ = this.articleStore.pipe(select(loading));
 
   public readonly title$ = this.articleStore.pipe(select(articleTitle));
   public readonly description$ = this.articleStore.pipe(select(articleDescription));

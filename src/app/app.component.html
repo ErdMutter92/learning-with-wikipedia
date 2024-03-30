@@ -14,29 +14,37 @@
 
 <mat-drawer-container class="main-container" autosize>
   <mat-drawer-content class="content-container">
-    <ng-container *ngIf="(article$ | async) as featuredArticle">
-      <mat-card class="lesson-card">
-        <mat-card-header>
-          <mat-card-title>{{ featuredArticle.title }}</mat-card-title>
-          <mat-card-subtitle>{{ featuredArticle.description }}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content class="contents">
-          <span
-            *ngFor="let word of featuredArticle.content"
-            mask
-            [word]="word"
-            [guesses]="guesses$ | async" 
-          >{{ word }}</span>
-        </mat-card-content>
-      </mat-card>
+    <ng-container *ngIf="loading$ | async; else content">
+      <div class="center-spinner">
+        <mat-spinner></mat-spinner>
+      </div>
     </ng-container>
 
-    <form class="input-container" [formGroup]="guessForm" (ngSubmit)="submit()">
-      <mat-form-field appearance="outline">
-        <mat-label translate="site.input.guess">Guesses</mat-label>
-        <input formControlName="currentGuess" matInput type="text">
-      </mat-form-field>
-    </form>
+    <ng-template #content>
+      <ng-container *ngIf="(article$ | async) as featuredArticle">
+        <mat-card class="lesson-card">
+          <mat-card-header>
+            <mat-card-title>{{ featuredArticle.title }}</mat-card-title>
+            <mat-card-subtitle>{{ featuredArticle.description }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content class="contents">
+            <span
+              *ngFor="let word of featuredArticle.content"
+              mask
+              [word]="word"
+              [guesses]="guesses$ | async" 
+            >{{ word }}</span>
+          </mat-card-content>
+        </mat-card>
+      </ng-container>
+
+      <form class="input-container" [formGroup]="guessForm" (ngSubmit)="submit()">
+        <mat-form-field appearance="outline">
+          <mat-label translate="site.input.guess">Guesses</mat-label>
+          <input formControlName="currentGuess" matInput type="text">
+        </mat-form-field>
+      </form>
+    </ng-template>
   </mat-drawer-content>
 
   <mat-drawer #rightDrawer class="right-sidenav" position="end" [opened]="true" mode="side">
