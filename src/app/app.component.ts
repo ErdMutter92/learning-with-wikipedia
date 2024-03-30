@@ -19,7 +19,7 @@ import { Store, select } from '@ngrx/store';
 import { Article } from './article/article.model';
 import { MatMenuModule } from '@angular/material/menu';
 import { allGuesses, allUngessedWords, allWords, articleContent, articleDescription, articleList, articleTitle, articleUnmasked, guesses, loading, selectedId } from './article/article.selectors';
-import { ADD_ARTICLE, ADD_GUESS, ARTICLE_UNMASK, LOAD_ARTICLE, RESET_ARTICLE, SELECT_ARTICLE, TOGGLE_ARTICLE_MASK } from './article/article.actions';
+import { ADD_ARTICLE, ADD_GUESS, ARTICLE_UNMASK, LOAD_ARTICLE, REMOVE_ARTICLE, RESET_ARTICLE, SELECT_ARTICLE, TOGGLE_ARTICLE_MASK } from './article/article.actions';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateDirective } from './language/translate.directive';
 import { LanguageSettings } from './language/language.model';
@@ -152,6 +152,14 @@ export class AppComponent {
 
       this.articleSearch.reset();
     }
+  }
+
+  public removeArticle(event: Event, id: any) {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    event.stopPropagation();
+
+    this.articleStore.dispatch(REMOVE_ARTICLE({ id }));
   }
 
   public selectArticle(id: any) {

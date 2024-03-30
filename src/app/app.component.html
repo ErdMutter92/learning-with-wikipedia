@@ -42,21 +42,21 @@
     <mat-icon> more_vert </mat-icon>
   </button>
   <mat-menu #moreActions="matMenu">
-    <button mat-menu-item>Unknown Wordbank</button>
+    <!-- <button mat-menu-item>Unknown Wordbank</button>
     <button mat-menu-item>
       <mat-icon>settings</mat-icon>
       <span>Settings</span>
-    </button>
+    </button> -->
     <mat-divider></mat-divider>
     <a
       mat-menu-item
-      matTooltip="Donate"
+      matTooltip="Donate & Support Us"
       href="https://www.buymeacoffee.com/bmbleau"
       data-intro-id="buy-me-a-coffee"
       target="_blank"
     >
-      <mat-icon>coffee</mat-icon>
-      <span>Buy me a coffee</span>
+      <mat-icon>sports_bar</mat-icon>
+      <span>Buy me a Radler</span>
     </a>
   </mat-menu>
 </mat-toolbar>
@@ -87,11 +87,12 @@
           class="select-article"
           [ngClass]="{ selected: currentArticleId === item[0] }"
           *ngFor="let item of articles$ | async"
-          ><span
-            [ngClass]="{ 'selected-article': currentArticleId === item[0] }"
-            >{{ item[1] }}</span
-          ></mat-list-item
         >
+          <span
+            [ngClass]="{ 'selected-article': currentArticleId === item[0] }"
+          >{{ item[1] }}</span>
+          <mat-icon matListItemIcon>article</mat-icon>
+        </mat-list-item>
       </mat-list>
     </div>
   </mat-drawer>

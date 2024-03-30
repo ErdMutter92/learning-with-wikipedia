@@ -10,6 +10,7 @@ export const ADD_ARTICLE = createAction('[Article] Add Article', props<{ title: 
 export const TOGGLE_ARTICLE_MASK = createAction('[Article] Toggle Masks', props<{ id: string }>());
 export const ARTICLE_UNMASK = createAction('[Article] Remove Masks', props<{ id: string }>());
 export const RESET_ARTICLE = createAction('[Article] Reset', props<{ id: string }>());
+export const REMOVE_ARTICLE = createAction('[Article] Delete Article', props<{ id: string; }>());
 
 export const ARTICLE_LOADED = createAction('[Article] Article Loaded', props<{
     article: {
