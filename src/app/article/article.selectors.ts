@@ -2,7 +2,7 @@ import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { Article, Library } from "./article.model";
 import { selectedLanguage } from "../language/language.selectors";
 
-export const ARTICLE_FEATURE = 'article';
+export const ARTICLE_FEATURE = 'library';
 
 export const library = createFeatureSelector<Library>(ARTICLE_FEATURE);
 

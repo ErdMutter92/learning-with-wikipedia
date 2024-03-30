@@ -11,13 +11,24 @@ import { ArticleEffects } from './article/article.effects';
 import { WikipediaAPIService } from './wikipedia.service';
 import { languageReducer } from './language/language.reducer';
 import { LanguageEffects } from './language/language.effects';
+import { localStorageSyncReducer } from './storage.state';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { ARTICLE_FEATURE } from './article/article.selectors';
+import { LANGUAGE_FEATURE } from './language/language.selectors';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     WikipediaAPIService,
     provideRouter(routes),
     importProvidersFrom(HttpClientModule), provideAnimationsAsync(),
-    provideStore({ article: articleReducer, language: languageReducer }),
+    provideStore(
+      { [ARTICLE_FEATURE]: articleReducer, [LANGUAGE_FEATURE]: languageReducer },
+      { metaReducers: [localStorageSyncReducer]}
+    ),
+    importProvidersFrom(StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: window.location.hostname === 'localhost', // Restrict extension to log-only mode
+    })),
     provideEffects(ArticleEffects, LanguageEffects)
   ]
 };

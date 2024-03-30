@@ -23,6 +23,7 @@ import { TranslateDirective } from './language/translate.directive';
 import { LanguageSettings } from './language/language.model';
 import { SET_LANGUAGE } from './language/language.actions';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { selectedLanguage } from './language/language.selectors';
 
 function noWhitespaceValidator(control: FormControl) {
   return (control.value || '').trim().length? null : { 'whitespace': true };       
@@ -57,6 +58,8 @@ export class AppComponent {
 
   public readonly loading$ = this.articleStore.pipe(select(loading));
 
+  public readonly language$ = this.languageSettingsStore.pipe(select(selectedLanguage));
+
   public readonly articleId$ = this.articleStore.pipe(select(selectedId));
   public readonly title$ = this.articleStore.pipe(select(articleTitle));
   public readonly description$ = this.articleStore.pipe(select(articleDescription));
@@ -89,6 +92,10 @@ export class AppComponent {
   ) {}
 
   public ngOnInit() {
+    this.language$.pipe(take(1)).subscribe((language: any) => {
+      if (language) this.languageSelector.setValue(language);
+    });
+    
     this.articleStore.dispatch(LOAD_ARTICLE());
 
     this.articleStore.subscribe(console.log);

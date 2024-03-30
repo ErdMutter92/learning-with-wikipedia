@@ -2377,6 +2377,13 @@
   dependencies:
     tslib "^2.3.0"
 
+"@ngrx/store-devtools@^17.1.1":
+  version "17.1.1"
+  resolved "https://registry.yarnpkg.com/@ngrx/store-devtools/-/store-devtools-17.1.1.tgz#dcbb221da64282f79df696edfe1518e8b6659291"
+  integrity sha512-MCzM44wHzc0eY6FSvPQwuXn1HFst8Y4Ckq7jvlPA202nJYwMZQQJReI5KQNHfGiqe0RpZKov0FUmy6sIyOOt2A==
+  dependencies:
+    tslib "^2.0.0"
+
 "@ngrx/store@^17.1.1":
   version "17.1.1"
   resolved "https://registry.yarnpkg.com/@ngrx/store/-/store-17.1.1.tgz#5e38aa2372331c0bbb6a6a73550d77c4e3cf9e1f"
@@ -3772,6 +3779,11 @@ debug@4, debug@^4.1.0, debug@^4.1.1, debug@^4.3.1, debug@^4.3.4, debug@~4.3.1, d
   integrity sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==
   dependencies:
     ms "2.1.2"
+
+deepmerge@^4.2.2:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-4.3.1.tgz#44b5f2147cd3b00d4b56137685966f26fd25dd4a"
+  integrity sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==
 
 default-gateway@^6.0.3:
   version "6.0.3"
@@ -5595,6 +5607,14 @@ neo-async@^2.6.2:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
+
+ngrx-store-localstorage@^17.0.0:
+  version "17.0.0"
+  resolved "https://registry.yarnpkg.com/ngrx-store-localstorage/-/ngrx-store-localstorage-17.0.0.tgz#3db803f8f60127716e3f04536bad752f7d8a4e92"
+  integrity sha512-tub6zwYsU+5aG8y2pV30C9Gz7ff2nlmUDOB4O9JVxU6ZrgogDzDR/+FpY5BgPv/1KNYD0aNXCfv0iCuxDVMBEQ==
+  dependencies:
+    deepmerge "^4.2.2"
+    tslib "^2.3.0"
 
 nice-napi@^1.0.2:
   version "1.0.2"
