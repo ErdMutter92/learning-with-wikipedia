@@ -30,9 +30,17 @@ export const articleList = createSelector(library, selectedLanguage, (library: L
     });
 });
 
-export const allArticles = createSelector(library, selectedLanguage, (library: Library, language: string) => Object.values(library.articles).filter(article => article.lang === language));
+export const allArticles = createSelector(library, selectedLanguage, (library: Library, language: string) =>
+    Object
+        .values(library.articles)
+        .filter(article => article.lang === language)
+);
 
-export const allGuesses = createSelector(allArticles, (articles: Article[]) => Array.from(new Set(articles.map(article => article.guesses).flat())));
+export const allGuesses = createSelector(allArticles, (articles: Article[]) => Array.from(
+    new Set(
+        articles.map(article => article.guesses).flat()
+    )
+));
 
 export const allWords = createSelector(allArticles, (articles: Article[]) => Array.from(
     new Set(
@@ -40,8 +48,8 @@ export const allWords = createSelector(allArticles, (articles: Article[]) => Arr
             .map(article => article.splitContent)
             .flat()
             .filter(word => !SPECALS.includes(word))
-        )
     )
+)
 );
 
 export const allUngessedWords = createSelector(allGuesses, allWords, (guesses, words) => {

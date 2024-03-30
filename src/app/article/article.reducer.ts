@@ -43,7 +43,8 @@ export const articleReducer = createReducer<Library>(
             ...state.articles,
             ...(state.articles?.[id] ? {
                 [id]: {
-                    ...state.articles?.[id], unmasked: false, guesses: [...splitter(state.articles?.[id]?.title ?? '')], 
+                    ...state.articles?.[id], unmasked: false, guesses: [], 
+                    // ...splitter(state.articles?.[id]?.title ?? '')
                 }
             } : {} as any),
         }
@@ -58,7 +59,7 @@ export const articleReducer = createReducer<Library>(
                 ...article,
                 splitContent: splitter(article.content),
                 guesses: Array.from(new Set([
-                    ...splitter(article.title),
+                    // ...splitter(article.title),
                     ...(state.articles?.[article.id]?.guesses ?? [])
                 ])),
             },

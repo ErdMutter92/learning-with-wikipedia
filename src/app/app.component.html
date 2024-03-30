@@ -163,6 +163,8 @@
       <mat-divider [vertical]="true"></mat-divider>
       <!-- <span class="spacer"></span> -->
       <span *ngIf="guesses$ | async as guesses">Guesses: {{ guesses.length }}</span>
+      <!-- <mat-divider [vertical]="true"></mat-divider>
+      <span>Remaining: </span> -->
     </mat-toolbar>
   </mat-drawer-content>
 
