@@ -101,7 +101,7 @@ export class AppComponent {
         steps: [
           {
             title: 'Welcome to Wiki Learning by BWN',
-            intro: 'Allow me to introduce you to Wiki Learning from Bleau Web Network. Before getting into the app this tutorial is here to show you the ropes.'
+            intro: 'Allow me to introduce you to Wiki Learning from Bleau Web Network. A language learning tool for practicing vocabulary and discovering words! The aim of the game is to guess all the words needed to unmask the entire article.'
           },
           {
             element: '[data-intro-id="language-selector"]',
@@ -110,13 +110,13 @@ export class AppComponent {
           },
           {
             element: '[data-intro-id="lesson-card"]',
-            title: 'Redacted Wiki Article',
-            intro: 'Here is your active article. For each word you guess correctly they will appear before your eyes. Complete the entire article to read the full thing!'
+            title: 'Your current article',
+            intro: 'Here is your active article. For each word you guess correctly they will appear before your eyes here. If you guesses are close enough the colors will change to provide hints to what is underneath.'
           },
           {
             element: '[data-intro-id="guess-input"]',
-            title: 'One guess at a time!',
-            intro: 'Type your guesses into this box. Upon pressing enter your guess will be checked with all the words in the article and added to zour guess list.'
+            title: 'Input your guesses',
+            intro: 'Type your guesses into this box. Upon pressing enter your guess will be checked with all the words in the article and added to your guess list.'
           },
           {
             element: '[data-intro-id="right-drawer"]',
