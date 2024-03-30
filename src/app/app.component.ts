@@ -116,7 +116,7 @@ export class AppComponent {
     this.selectedLanguage$.pipe(take(1)).subscribe((language: any) => {
       if (language) this.languageSelector.setValue(language);
     });
-    
+
     this.articleStore.dispatch(LOAD_ARTICLE({ title: 'Wikipedia' }));
 
     this.languageSelector.valueChanges.subscribe((language) => {
