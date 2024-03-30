@@ -34,10 +34,10 @@ export const articleReducer = createReducer<Library>(
             [article.id]: {
                 ...article,
                 splitContent: splitter(article.content),
-                guesses: [
+                guesses: Array.from([
                     ...splitter(article.title),
                     ...(state.articles?.[article.id]?.guesses ?? [])
-                ]
+                ]),
             },
         } as any,
     })),
