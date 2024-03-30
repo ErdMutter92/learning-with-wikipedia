@@ -1,29 +1,41 @@
 import { createReducer, on } from "@ngrx/store";
-import { Article } from "./article.model";
-import { ADD_GUESS, ARTICLE_LOADED, CLEAR_GUESSES, LOAD_ARTICLE } from "./article.actions";
+import { Article, Library } from "./article.model";
+import { ADD_GUESS, ARTICLE_LOADED, CLEAR_GUESSES, LOAD_ARTICLE, SELECT_ARTICLE } from "./article.actions";
 
-export const articleReducer = createReducer<Article>(
-    { loading: true, guesses: [], content: null, description: null, splitContent: [], title: null },
-    on(ADD_GUESS, (state, action) => ({
+export const articleReducer = createReducer<Library>(
+    { loading: true, selected: undefined, articles: {} },
+    on(ADD_GUESS, (state, { guess, id }) => ({
         ...state,
-        guesses: Array.from(new Set(state.guesses).add(action.guess))
+        articles: {
+            ...state.articles,
+            [state.selected as string]: {
+                ...state.articles[id],
+                guesses: Array.from(new Set(state.articles[id].guesses).add(guess)),
+            },
+        },
     })),
     on(CLEAR_GUESSES, (state) => ({
         ...state,
-        guesses: []
+        articles: {
+            ...state.articles,
+            [state.selected as string]: {
+                ...state.articles[state.selected as string],
+                guesses: [],
+            },
+        },
     })),
     on(LOAD_ARTICLE, (state) => ({ ...state, loading: true })),
-    on(ARTICLE_LOADED, (state, action) => ({
+    on(SELECT_ARTICLE, (state, { id: selected }) => ({...state, selected })),
+    on(ARTICLE_LOADED, (state, { article }) => ({
         ...state,
         loading: false,
-        title: action.title,
-        description: action.description,
-        content: action.content,
-        splitContent: splitter(action.content),
-        guesses: Array.from(new Set([
-            ...state.guesses,
-            ...splitter(action.title)
-        ]))
+        articles: {
+            ...state.articles,
+            [article.id]: {
+                ...article,
+                splitContent: splitter(article.content)
+            },
+        } as any,
     })),
 )
 

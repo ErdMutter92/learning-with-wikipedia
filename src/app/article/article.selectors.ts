@@ -1,13 +1,25 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { Article } from "./article.model";
+import { Article, Library } from "./article.model";
 
 export const ARTICLE_FEATURE = 'article';
 
-export const article = createFeatureSelector<Article>(ARTICLE_FEATURE);
+export const library = createFeatureSelector<Library>(ARTICLE_FEATURE);
 
-export const articleTitle = createSelector(article, (state: Article) => state.title);
-export const articleDescription = createSelector(article, (state: Article) => state.description);
-export const articleContent = createSelector(article, (state: Article) => state.splitContent);
-export const guesses = createSelector(article, (state: Article) => state.guesses);
+export const selectedId = createSelector(library, (state: Library) => state.selected as string);
 
-export const loading = createSelector(article, (state: Article) => state.loading);
+export const article = createSelector(library, selectedId, (library: Library, id: string) => {
+    return library.articles[id];
+});
+
+export const articleTitle = createSelector(article, (state: Article) => state?.title);
+export const articleDescription = createSelector(article, (state: Article) => state?.description);
+export const articleContent = createSelector(article, (state: Article) => state?.splitContent);
+export const guesses = createSelector(article, (state: Article) => state?.guesses);
+
+export const loading = createSelector(library, (state: Library) => state.loading);
+
+export const articleList = createSelector(library, (library: Library) => {
+    return Object.values(library.articles).map(article => {
+        return [article.id, article.title];
+    });
+});

@@ -3,6 +3,7 @@ export const en = {
         title: 'Learn With Wikipedia',
         tried_words: 'Guesses',
         input: {
+            article: 'Article',
             guess: 'Guesses'
         },
     },

@@ -1,4 +1,9 @@
 <mat-toolbar>
+  <button mat-icon-button (click)="leftDrawer.toggle()" matTooltip="Toggle Left Sidebar">
+    <mat-icon>
+      menu
+    </mat-icon>
+  </button>
   <span translate="site.title">Learn With Wikipedia</span>
   <span class="spacer"></span>
   <mat-select [formControl]="languageSelector" style="width: 120px;">
@@ -13,6 +18,19 @@
 </mat-toolbar>
 
 <mat-drawer-container class="main-container" autosize>
+  <mat-drawer #leftDrawer class="left-sidenav" position="start" [opened]="true" mode="side">
+    <form class="input-container" [formGroup]="guessForm" (ngSubmit)="submit()">
+      <mat-form-field appearance="fill" disabled>
+        <mat-label translate="site.input.article">Article</mat-label>
+        <input matInput type="text" [disabled]="true">
+      </mat-form-field>
+    </form>
+
+    <mat-list>
+      <mat-list-item *ngFor="let item of articles$ | async">{{ item[1] }}</mat-list-item>
+    </mat-list>
+  </mat-drawer>
+
   <mat-drawer-content class="content-container">
     <ng-container *ngIf="loading$ | async; else content">
       <div class="center-spinner">
@@ -21,6 +39,13 @@
     </ng-container>
 
     <ng-template #content>
+      <form class="input-container" [formGroup]="guessForm" (ngSubmit)="submit()">
+        <mat-form-field appearance="outline">
+          <mat-label translate="site.input.guess">Guesses</mat-label>
+          <input formControlName="currentGuess" matInput type="text">
+        </mat-form-field>
+      </form>
+
       <ng-container *ngIf="(article$ | async) as featuredArticle">
         <mat-card class="lesson-card">
           <mat-card-header>
@@ -37,13 +62,6 @@
           </mat-card-content>
         </mat-card>
       </ng-container>
-
-      <form class="input-container" [formGroup]="guessForm" (ngSubmit)="submit()">
-        <mat-form-field appearance="outline">
-          <mat-label translate="site.input.guess">Guesses</mat-label>
-          <input formControlName="currentGuess" matInput type="text">
-        </mat-form-field>
-      </form>
     </ng-template>
   </mat-drawer-content>
 

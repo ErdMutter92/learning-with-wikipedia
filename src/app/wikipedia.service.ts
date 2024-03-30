@@ -41,6 +41,30 @@ export class WikipediaAPIService {
         )
     }
 
+    public getArticle(string: string) {
+        const headers = new HttpHeaders();
+        // headers.set('Authorization', 'Bearer YOUR_ACCESS_TOKEN');
+        headers.set('Api-User-Agent', 'Deutsch Vocab Lehnen (bmbleau@gmail.com)');
+
+        let cors = '';
+
+        if (window.location.hostname !== 'localhost') {
+            cors = '?origin=*';
+        }
+
+        return this.language$.pipe(
+            switchMap((language: Language) => {
+                return this.httpClient.get(
+                    `https://${language}.wikipedia.org/api/rest_v1/page/summary/${string}${cors}`,
+                    {
+                        headers,
+                        withCredentials: false
+                    }
+                );
+            })
+        )
+    }
+
     public getFeaturedArticle() {
         let today = new Date();
         let year = today.getFullYear();

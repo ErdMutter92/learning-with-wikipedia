@@ -11,12 +11,12 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
-import { Observable, combineLatest, map, of, shareReplay, startWith, tap } from 'rxjs';
+import { Observable, combineLatest, map, of, shareReplay, startWith, take, tap } from 'rxjs';
 import { Language } from './language/language.enum';
 import { ArticleMaskDirective } from './article/article-mask.directive';
 import { Store, select } from '@ngrx/store';
 import { Article } from './article/article.model';
-import { articleContent, articleDescription, articleTitle, guesses, loading } from './article/article.selectors';
+import { articleContent, articleDescription, articleList, articleTitle, guesses, loading, selectedId } from './article/article.selectors';
 import { ADD_GUESS, LOAD_ARTICLE } from './article/article.actions';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateDirective } from './language/translate.directive';
@@ -53,10 +53,13 @@ export class AppComponent {
 
   public readonly loading$ = this.articleStore.pipe(select(loading));
 
+  public readonly articleId$ = this.articleStore.pipe(select(selectedId));
   public readonly title$ = this.articleStore.pipe(select(articleTitle));
   public readonly description$ = this.articleStore.pipe(select(articleDescription));
   public readonly content$ = this.articleStore.pipe(select(articleContent));
   public readonly guesses$ = this.articleStore.pipe(select(guesses));
+
+  public readonly articles$ = this.articleStore.pipe(select(articleList));
 
   public readonly article$ = combineLatest(
     [this.title$, this.description$, this.content$]
@@ -67,6 +70,7 @@ export class AppComponent {
       description,
       content
     })),
+    tap(console.log)
   );
 
   public guessForm = this.formBuilder.group({
@@ -84,6 +88,8 @@ export class AppComponent {
   public ngOnInit() {
     this.articleStore.dispatch(LOAD_ARTICLE());
 
+    this.articleStore.subscribe(console.log);
+
     this.languageSelector.valueChanges.subscribe((language) => {
       this.articleStore.dispatch(SET_LANGUAGE({ language } as any));
     })
@@ -94,9 +100,11 @@ export class AppComponent {
     const guess = this.guessForm.value.currentGuess;
 
     if (guess) {
-      this.articleStore.dispatch(ADD_GUESS({ guess }));
-    }
+      this.articleId$.pipe(take(1)).subscribe((id: string) => {
+        this.articleStore.dispatch(ADD_GUESS({ guess, id }));
 
-    this.guessForm.reset();
+        this.guessForm.reset();
+      })
+    }
   }
 }
