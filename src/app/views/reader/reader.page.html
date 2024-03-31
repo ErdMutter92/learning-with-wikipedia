@@ -1,0 +1,49 @@
+<ng-container *ngIf="article$ | async as article">
+  <form
+    class="input-container"
+    [formGroup]="guesser"
+    (ngSubmit)="registerGuess(article.id)"
+    data-intro-id="guess-input"
+  >
+    <mat-form-field appearance="outline">
+      <mat-label translate="site.input.guess">Guesses</mat-label>
+      <input
+        formControlName="main"
+        (keypress)="preventInput(' ')($event)"
+        matInput
+        type="text"
+        [readOnly]="!!(article$ | async)?.unmasked"
+      />
+    </mat-form-field>
+  </form>
+
+  <mat-card class="lesson-card" data-intro-id="lesson-card">
+    <mat-card-header>
+      <mat-card-title>{{ article.title }}</mat-card-title>
+      <mat-card-subtitle>{{ article.description }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="contents">
+      <span
+        *ngFor="let word of article.splitContent"
+        mask
+        [word]="word"
+        [unmasked]="article.unmasked"
+        [guesses]="article.guesses"
+        >{{ word }}</span
+      >
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="reset(article.id)">
+        Reset
+      </button>
+      <span class="spacer"></span>
+      <button
+        mat-icon-button
+        (click)="unmask(article.id)"
+        matTooltip="umask all words"
+      >
+        <mat-icon>visibility</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</ng-container>

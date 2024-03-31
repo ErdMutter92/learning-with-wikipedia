@@ -25,6 +25,7 @@ export class ArticleMaskDirective {
     ) {}
 
     public ngAfterViewInit(): void {
+        this.renderer.addClass(this._element.nativeElement, 'maskable');
         this.adjustClasses();
     }
 

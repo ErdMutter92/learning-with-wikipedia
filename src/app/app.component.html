@@ -8,6 +8,7 @@
   </button>
   <span translate="site.title">Learn With Wikipedia</span>
   <span class="spacer"></span>
+  <router-outlet name="header"></router-outlet>
   <mat-select
     [formControl]="languageSelector"
     data-intro-id="language-selector"
@@ -33,11 +34,10 @@
     <mat-icon> more_vert </mat-icon>
   </button>
   <mat-menu #moreActions="matMenu">
-    <!-- <button mat-menu-item>Unknown Wordbank</button>
     <button mat-menu-item>
       <mat-icon>settings</mat-icon>
       <span>Settings</span>
-    </button> -->
+    </button>
     <mat-divider></mat-divider>
     <a
       mat-menu-item
@@ -96,68 +96,14 @@
     </ng-container>
 
     <ng-template #content>
-      <div class="inner">
-        <form
-          class="input-container"
-          [formGroup]="guessForm"
-          (ngSubmit)="submit()"
-          data-intro-id="guess-input"
-        >
-          <mat-form-field appearance="outline">
-            <mat-label translate="site.input.guess">Guesses</mat-label>
-            <input
-              formControlName="currentGuess"
-              (keypress)="checkGuessInput($event)"
-              matInput
-              type="text"
-              [readOnly]="!!(article$ | async)?.unmasked"
-            />
-          </mat-form-field>
-        </form>
-
-        <ng-container *ngIf="article$ | async as featuredArticle">
-          <mat-card class="lesson-card" data-intro-id="lesson-card">
-            <mat-card-header>
-              <mat-card-title>{{ featuredArticle.title }}</mat-card-title>
-              <mat-card-subtitle>{{
-                featuredArticle.description
-              }}</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content class="contents">
-              <span
-                *ngFor="let word of featuredArticle.content"
-                mask
-                [word]="word"
-                [unmasked]="featuredArticle.unmasked"
-                [guesses]="guesses$ | async"
-                >{{ word }}</span
-              >
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-button (click)="resetArticle(featuredArticle.id)">
-                Reset
-              </button>
-              <span class="spacer"></span>
-              <button
-                mat-icon-button
-                (click)="unmask(featuredArticle.id)"
-                matTooltip="umask all words"
-              >
-                <mat-icon>visibility</mat-icon>
-              </button>
-            </mat-card-actions>
-          </mat-card>
-        </ng-container>
-      </div>
+      <router-outlet></router-outlet>
     </ng-template>
 
     <mat-toolbar class="footer">
+      <!-- <reader-footer></reader-footer> -->
       <span *ngIf="article$ | async as featuredArticle">Words: {{ featuredArticle.content.length }}</span>
       <mat-divider [vertical]="true"></mat-divider>
-      <!-- <span class="spacer"></span> -->
       <span *ngIf="guesses$ | async as guesses">Guesses: {{ guesses.length }}</span>
-      <!-- <mat-divider [vertical]="true"></mat-divider>
-      <span>Remaining: </span> -->
     </mat-toolbar>
   </mat-drawer-content>
 
