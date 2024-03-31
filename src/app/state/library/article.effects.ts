@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Actions, concatLatestFrom, createEffect, ofType } from "@ngrx/effects";
 import { map, switchMap, tap, withLatestFrom } from "rxjs";
-import { WikipediaAPIService } from "../wikipedia.service";
+import { WikipediaAPIService } from "../../common/wikipedia/wikipedia.service";
 import { ARTICLE_LOADED, LOAD_ARTICLE, SELECT_ARTICLE } from "./article.actions";
 import { Store, select } from "@ngrx/store";
 import { Library } from "./article.model";

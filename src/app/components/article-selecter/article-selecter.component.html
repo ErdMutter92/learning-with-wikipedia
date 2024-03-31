@@ -1,0 +1,24 @@
+<form
+  class="search"
+  [formGroup]="searchForm"
+  (ngSubmit)="_submit$$()"
+>
+  <mat-form-field appearance="fill">
+    <mat-label>Article</mat-label>
+    <input formControlName="title" matInput type="text" />
+  </mat-form-field>
+</form>
+
+<mat-list>
+  <mat-list-item
+    (click)="_select$$(item)"
+    class="select-article"
+    [ngClass]="{ selected: activeId === item.id }"
+    *ngFor="let item of articles"
+  >
+    <span [ngClass]="{ 'selected-article': activeId === item.id }">{{
+      item.title
+    }}</span>
+    <mat-icon matListItemIcon>article</mat-icon>
+  </mat-list-item>
+</mat-list>

@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Directive, ElementRef, Input, Renderer2 } from "@angular/core";
-import { LanguageSettings } from "./language.model";
 import { Store, select } from "@ngrx/store";
-import { translation } from "./language.selectors";
 import { Subject, takeUntil } from "rxjs";
+import { LanguageSettings } from "../../state/language/language.model";
+import { translation } from "../../state/language/language.selectors";
 
 @Directive({
     standalone: true,

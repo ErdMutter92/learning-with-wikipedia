@@ -6,7 +6,7 @@ export const routes: Routes = [
         children: [
             {
                 path: 'reader',
-                loadComponent: () => import('./views/reader/reader.page').then(module => module.ReaderPage)
+                loadChildren: () => import('./views/reader/reader.routes').then(m => m.routes),
             },
             {
                 path: 'vocab',

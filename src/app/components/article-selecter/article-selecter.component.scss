@@ -1,0 +1,26 @@
+:host {
+  flex-direction: column;
+  display: flex;
+
+  .search {
+    max-width: 320px;
+    
+    display: flex;
+
+    mat-form-field {
+      flex: 1 auto;
+    }
+  }
+  
+  .select-article {
+    cursor: pointer;
+  }
+
+  ::ng-deep mat-list mat-list-item.selected {
+    background-color: lighten(lightgray, 10%);
+  }
+
+  .selected-article {
+    font-weight: bold;
+  }
+}

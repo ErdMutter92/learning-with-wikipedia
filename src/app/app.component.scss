@@ -3,12 +3,6 @@
   flex-direction: column;
   height: 100%;
 
-  mat-divider.mat-divider-vertical {
-    height: 100%;
-    border-right-color: rgba(0,0,0,0.05);
-    border-right-width: 2px;
-  }
-
   mat-toolbar {
     height: 64px;
     display: flex;
@@ -35,88 +29,10 @@
 
   .main-container {
     flex: 1 auto;
-
-    .content-container {
-      
-      .inner {
-        margin: 20px;
-      }
-
-      .input-container {
-        max-width: 800px;
-        margin: auto;
-        display: flex;
-
-        mat-form-field {
-          flex: 1 auto;
-        }
-      }
-    }
-
-    mat-card {
-      display: block;
-      max-width: 800px;
-      margin: auto;
-
-      &.lesson-card {
-        margin-bottom: 25px;
-        margin-top: 25px;
-      }
-    }
-
-    .lesson-guesses {
-      display: block;
-      max-width: 800px;
-      margin: auto;
-    }
-
-    .left-sidenav {
-      display: flex;
-      min-width: 320px;
-
-      .input-container {
-        max-width: 320px;
-        margin: auto;
-        display: flex;
-
-        mat-form-field {
-          flex: 1 auto;
-        }
-      }
-    }
-
-    .right-sidenav {
-      width: 320px;
-      padding: 10px;
-
-      .title {
-        font-weight: bold;
-        font-size: 1.5rem;
-        margin-bottom: 10px;
-      }
-    }
   }
 
   .spacer {
     margin-left: auto;
-  }
-
-  .contents {
-    max-width: 800%;
-    word-wrap: normal;
-    margin: 20px 0px;
-  }
-
-  .select-article {
-    cursor: pointer;
-  }
-
-  .selected-article {
-    font-weight: bold;
-  }
-
-  ::ng-deep mat-list mat-list-item.selected {
-    background-color: lighten(lightgray, 10%);
   }
 
   .rotate-180 {

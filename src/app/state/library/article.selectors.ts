@@ -16,6 +16,7 @@ export const article = createSelector(library, selectedId, (library: Library, id
 export const articleTitle = createSelector(article, (state: Article) => state?.title);
 export const articleDescription = createSelector(article, (state: Article) => state?.description);
 export const articleContent = createSelector(article, (state: Article) => state?.splitContent);
+export const words = createSelector(article, (state: Article) => state?.splitContent);
 export const guesses = createSelector(article, (state: Article) => state?.guesses);
 
 export const articleUnmasked = createSelector(article, (state: Article) => state?.unmasked);

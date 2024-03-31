@@ -1,0 +1,8 @@
+<div data-intro-id="left-drawer">
+  <article-selecter
+    [activeId]="articleId$ | async"
+    [articles]="articles$ | async"
+    (select)="selectArticle($event?.id)"
+    (search)="addArticle($event)"
+  ></article-selecter>
+</div>

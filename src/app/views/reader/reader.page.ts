@@ -1,14 +1,14 @@
 import { Component } from "@angular/core";
 import { Store, select } from "@ngrx/store";
-import { Article } from "../../article/article.model";
-import { article } from "../../article/article.selectors";
+import { Article } from "../../state/library/article.model";
+import { article } from "../../state/library/article.selectors";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { MatInputModule } from "@angular/material/input";
-import { ADD_GUESS } from "../../article/article.actions";
+import { ADD_GUESS } from "../../state/library/article.actions";
 import { MatCardModule } from "@angular/material/card";
 import { MatIconModule } from "@angular/material/icon";
-import { ArticleMaskDirective } from "../../article/article-mask.directive";
+import { ArticleMaskDirective } from "../../state/library/article-mask.directive";
 import { MatButtonModule } from "@angular/material/button";
 
 @Component({

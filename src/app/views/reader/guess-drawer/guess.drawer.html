@@ -1,0 +1,3 @@
+<ng-container *ngIf="guesses$ | async as guesses">
+    <wordbank label="Guesses" [words]="guesses"></wordbank>
+</ng-container>

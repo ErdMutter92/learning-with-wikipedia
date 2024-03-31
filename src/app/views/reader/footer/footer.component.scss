@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+  height: 64px;
+  gap: 10px;
+  align-items: center;
+
+  mat-divider.mat-divider-vertical {
+    height: 100%;
+    border-right-color: rgba(0, 0, 0, 0.05);
+    border-right-width: 2px;
+  }
+}

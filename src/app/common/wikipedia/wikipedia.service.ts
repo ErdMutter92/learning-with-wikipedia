@@ -1,10 +1,10 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Store, select } from "@ngrx/store";
-import { LanguageSettings } from "./language/language.model";
-import { selectedLanguage } from "./language/language.selectors";
+import { LanguageSettings } from "../../state/language/language.model";
+import { selectedLanguage } from "../../state/language/language.selectors";
 import { switchMap } from "rxjs";
-import { Language } from "./language/language.enum";
+import { Language } from "../../state/language/language.enum";
 
 @Injectable()
 export class WikipediaAPIService {

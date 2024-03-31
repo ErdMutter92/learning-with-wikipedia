@@ -53,70 +53,25 @@
 </mat-toolbar>
 
 <mat-drawer-container class="main-container" autosize>
-  <mat-drawer
-    #leftDrawer
-    class="left-sidenav"
-    position="start"
-    [opened]="true"
-    mode="side"
-  >
-    <div data-intro-id="left-drawer">
-      <form
-        class="input-container"
-        [formGroup]="articleSearch"
-        (ngSubmit)="addArticle()"
-      >
-        <mat-form-field appearance="fill">
-          <mat-label translate="site.input.article">Article</mat-label>
-          <input formControlName="search" matInput type="text" />
-        </mat-form-field>
-      </form>
-
-      <mat-list *ngIf="articleId$ | async as currentArticleId">
-        <mat-list-item
-          (click)="selectArticle(item[0])"
-          class="select-article"
-          [ngClass]="{ selected: currentArticleId === item[0] }"
-          *ngFor="let item of articles$ | async"
-        >
-          <span
-            [ngClass]="{ 'selected-article': currentArticleId === item[0] }"
-          >{{ item[1] }}</span>
-          <mat-icon matListItemIcon>article</mat-icon>
-        </mat-list-item>
-      </mat-list>
-    </div>
+  <mat-drawer #leftDrawer class="right-sidenav" position="start" [opened]="true" mode="side">
+    <router-outlet name="left-drawer"></router-outlet>
   </mat-drawer>
 
-  <mat-drawer-content class="content-container">
-    <ng-container *ngIf="loading$ | async; else content">
-      <div class="center-spinner">
-        <mat-spinner></mat-spinner>
-      </div>
-    </ng-container>
+  <ng-container *ngIf="loading$ | async; else content">
+    <div class="center-spinner">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-container>
 
-    <ng-template #content>
-      <router-outlet></router-outlet>
+  <ng-template #content>
+      <router-outlet name="content"></router-outlet>
     </ng-template>
 
-    <mat-toolbar class="footer">
-      <!-- <reader-footer></reader-footer> -->
-      <span *ngIf="article$ | async as featuredArticle">Words: {{ featuredArticle.content.length }}</span>
-      <mat-divider [vertical]="true"></mat-divider>
-      <span *ngIf="guesses$ | async as guesses">Guesses: {{ guesses.length }}</span>
-    </mat-toolbar>
-  </mat-drawer-content>
+  <mat-toolbar class="footer">
+    <router-outlet name="footer"></router-outlet>
+  </mat-toolbar>
 
-  <mat-drawer
-    #rightDrawer
-    class="right-sidenav"
-    position="end"
-    [opened]="true"
-    mode="side"
-  >
-    <div data-intro-id="right-drawer">
-      <div class="title" translate="site.tried_words">Guesses</div>
-      <p *ngIf="guesses$ | async as guesses">{{ guesses.join(", ") }}</p>
-    </div>
+  <mat-drawer #rightDrawer class="right-sidenav" position="end" [opened]="true" mode="side">
+    <router-outlet name="right-drawer"></router-outlet>
   </mat-drawer>
 </mat-drawer-container>
