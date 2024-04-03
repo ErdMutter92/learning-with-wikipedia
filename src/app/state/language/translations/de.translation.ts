@@ -4,8 +4,25 @@ export const de = {
         tried_words: 'Erraten',
         input: {
             article: 'Artikle...',
-            guess: 'deine Vermutung'
+            guess: 'Deine Vermutung'
         },
+        reader: {
+            reset: 'reset',
+            footer: {
+                words: 'Words',
+                guesses: 'Guesses'
+            },
+            rightDrawer: {
+                guesses: 'Guesses'
+            },
+            leftDrawer: {
+                inputLabel: 'Article...' 
+            }
+        },
+        tooltips: {
+            right_sidebar_tooltip: 'Toggle Right Sidebar',
+            left_sidebar_tooltip: 'Toggle Left Sidebar',
+        }
     },
     tutorial: [
         {
@@ -43,8 +60,4 @@ export const de = {
             intro: 'Sometime in the future, if you are able to and have gotten some good use out of this app, please consider donating. This will help me bring more educational resources to people for free. <br /><br /><a href="https://www.buymeacoffee.com/bmbleau">Buy me a Radler</a>'
         }
     ],
-    toolbar: {
-        right_sidebar_tooltip: 'Toggle Right Sidebar',
-        left_sidebar_tooltip: 'Toggle Left Sidebar',
-    },
 }

@@ -2,11 +2,11 @@
   <button
     mat-icon-button
     (click)="leftDrawer.toggle()"
-    matTooltip="Toggle Left Sidebar"
+    [matTooltip]="'site.tooltips.left_sidebar_tooltip' | translate"
   >
     <mat-icon> {{ leftDrawer.opened ? "menu_open" : "menu" }} </mat-icon>
   </button>
-  <span translate="site.title">Learn With Wikipedia</span>
+  <span>{{ 'site.title' | translate }}</span>
   <span class="spacer"></span>
   <router-outlet name="header"></router-outlet>
   <mat-select
@@ -20,7 +20,7 @@
   <button
     mat-icon-button
     (click)="rightDrawer.toggle()"
-    matTooltip="Toggle Right Sidebar"
+    [matTooltip]="'site.tooltips.right_sidebar_tooltip' | translate"
   >
     <mat-icon [ngClass]="{ 'rotate-180': !!rightDrawer.opened }">
       {{ rightDrawer.opened ? "menu_open" : "menu" }}

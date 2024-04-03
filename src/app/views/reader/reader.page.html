@@ -6,7 +6,7 @@
     data-intro-id="guess-input"
   >
     <mat-form-field appearance="outline">
-      <mat-label translate="site.input.guess">Guesses</mat-label>
+      <mat-label>{{ 'site.input.guess' | translate }}</mat-label>
       <input
         formControlName="main"
         (keypress)="preventInput(' ')($event)"
@@ -34,7 +34,7 @@
     </mat-card-content>
     <mat-card-actions>
       <button mat-button (click)="reset(article.id)">
-        Reset
+        {{ 'site.reader.reset' | translate }}
       </button>
       <span class="spacer"></span>
       <button

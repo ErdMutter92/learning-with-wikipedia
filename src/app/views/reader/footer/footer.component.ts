@@ -5,6 +5,7 @@ import { CounterComponent } from "../../../components/counter/counter.component"
 import { Store, select } from "@ngrx/store";
 import { Article } from "../../../state/library/article.model";
 import { article, guesses, words } from "../../../state/library/article.selectors";
+import { TranslatePipe } from "../../../common/translate/translate.pipe";
 
 @Component({
     standalone: true,
@@ -13,6 +14,7 @@ import { article, guesses, words } from "../../../state/library/article.selector
         CommonModule,
         MatDividerModule,
         CounterComponent,
+        TranslatePipe
     ],
     templateUrl: './footer.component.html',
     styleUrls: ['./footer.component.scss']

@@ -5,6 +5,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatListModule } from "@angular/material/list";
 import { Article } from "../../state/library/article.model";
 import { MatIconModule } from "@angular/material/icon";
+import { TranslatePipe } from "../../common/translate/translate.pipe";
 
 @Component({
     standalone: true,
@@ -14,6 +15,7 @@ import { MatIconModule } from "@angular/material/icon";
         MatInputModule,
         MatListModule,
         MatIconModule,
+        TranslatePipe,
     ],
     selector: 'article-selecter',
     templateUrl: './article-selecter.component.html',

@@ -4,10 +4,11 @@ import { WordbankComponent } from "../../../components/wordbank/wordbank.compone
 import { Article } from "../../../state/library/article.model";
 import { Store, select } from "@ngrx/store";
 import { guesses } from "../../../state/library/article.selectors";
+import { TranslatePipe } from "../../../common/translate/translate.pipe";
 
 @Component({
     standalone: true,
-    imports: [CommonModule, WordbankComponent],
+    imports: [CommonModule, WordbankComponent, TranslatePipe],
     templateUrl: './guess.drawer.html',
     styleUrls: ['./guess.drawer.scss']
 })

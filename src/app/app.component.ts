@@ -30,6 +30,7 @@ import introJs from 'intro.js';
 import { MatDividerModule } from '@angular/material/divider';
 import { WordbankComponent } from './components/wordbank/wordbank.component';
 import { ArticleSelectorComponent } from './components/article-selecter/article-selecter.component';
+import { TranslatePipe } from './common/translate/translate.pipe';
 
 @Component({
   selector: 'app-root',
@@ -38,6 +39,7 @@ import { ArticleSelectorComponent } from './components/article-selecter/article-
     CommonModule,
     RouterModule,
     WordbankComponent,
+    TranslatePipe,
     ReactiveFormsModule,
     ArticleMaskDirective,
     TranslateDirective,

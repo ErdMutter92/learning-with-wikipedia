@@ -10,6 +10,7 @@ import { MatCardModule } from "@angular/material/card";
 import { MatIconModule } from "@angular/material/icon";
 import { ArticleMaskDirective } from "../../state/library/article-mask.directive";
 import { MatButtonModule } from "@angular/material/button";
+import { TranslatePipe } from "../../common/translate/translate.pipe";
 
 @Component({
     standalone: true,
@@ -20,6 +21,7 @@ import { MatButtonModule } from "@angular/material/button";
         MatCardModule,
         MatIconModule,
         MatButtonModule,
+        TranslatePipe,
         ArticleMaskDirective,
     ],
     templateUrl: './reader.page.html',
