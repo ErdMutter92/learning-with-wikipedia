@@ -21,7 +21,6 @@ import { MatMenuModule } from '@angular/material/menu';
 import { loading } from './state/library/article.selectors';
 import { ARTICLE_UNMASK, LOAD_ARTICLE, REMOVE_ARTICLE, RESET_ARTICLE } from './state/library/article.actions';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { TranslateDirective } from './state/language/translate.directive';
 import { LanguageSettings } from './state/language/language.model';
 import { SET_LANGUAGE } from './state/language/language.actions';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -42,7 +41,6 @@ import { TranslatePipe } from './common/translate/translate.pipe';
     TranslatePipe,
     ReactiveFormsModule,
     ArticleMaskDirective,
-    TranslateDirective,
     RouterOutlet,
     MatToolbarModule,
     MatCardModule,
